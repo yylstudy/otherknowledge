@@ -50,7 +50,11 @@ public class MyTest1 {
             completionService2.submit(new MyCallable(i));
         }
         for(int i=10;i>0;i--){
-            System.out.println(completionService.take().get());
+            try {
+                completionService.take().get();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
     }
@@ -86,7 +90,7 @@ public class MyTest1 {
         private int sleepTime;
         public Integer call() throws Exception {
             Thread.sleep(sleepTime*1000);
-            return sleepTime;
+            throw new RuntimeException("kkk");
         }
     }
 
