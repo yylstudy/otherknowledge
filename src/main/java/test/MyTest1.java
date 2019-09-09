@@ -2,7 +2,11 @@ package test;
 
 import com.alibaba.dubbo.common.utils.NamedThreadFactory;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.net.InetAddress;
+import java.util.Properties;
+import java.util.UUID;
 import java.util.concurrent.*;
 
 /**
@@ -11,13 +15,7 @@ import java.util.concurrent.*;
  */
 public class MyTest1 {
     public static void main(String[] args) throws Exception {
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("test"));
-        executorService.scheduleWithFixedDelay(new Runnable() {
-            public void run() {
-                System.out.println("-----------------");
-            }
-        },5000,5000, TimeUnit.MILLISECONDS);
-
+        String str = System.getProperty("user.home");
+        System.out.println(str);
     }
-
 }

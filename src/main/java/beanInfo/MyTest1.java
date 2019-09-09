@@ -1,6 +1,7 @@
 package beanInfo;
 
 /**
+ * BeanInfo的使用，这个应该是类似mybatis的MetaObject
  * @Author: yyl
  * @Date: 2019/1/10 10:58
  */
@@ -8,9 +9,6 @@ package beanInfo;
 import java.beans.*;
 import java.util.Date;
 
-/**
- * BeanInfo的使用，这个应该是类似mybatis的MetaObject
- */
 public class MyTest1 {
     public static void main(String[] args) throws Exception{
         Person person = new Person("yyl",29,new Date());

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 
 /**
@@ -22,8 +23,7 @@ public class MyTest1 {
      */
     @Test
     public void test1() throws Exception{
-        long start = System.currentTimeMillis();
-        List<Future> list = new ArrayList<Future>();
+        List<Future<Integer>> list = new ArrayList();
         for(int i=10;i>0;i--){
             list.add(pool.submit(new MyCallable(i)));
         }
@@ -49,7 +49,7 @@ public class MyTest1 {
         for(int i=5;i>0;i--){
             completionService2.submit(new MyCallable(i));
         }
-        for(int i=10;i>0;i--){
+        for(int i=5;i>0;i--){
             try {
                 completionService.take().get();
             }catch (Exception e){
@@ -70,9 +70,11 @@ public class MyTest1 {
         for(int i=5;i>0;i--){
             ListenableFuture listenableFuture = pool.submit(new MyCallable(i));
             Futures.addCallback(listenableFuture,new FutureCallback<Integer>() {
+                @Override
                 public void onSuccess(Integer result) {
                     System.out.println(result);
                 }
+                @Override
                 public void onFailure(Throwable t) {
                     t.printStackTrace();
                 }
@@ -84,10 +86,22 @@ public class MyTest1 {
         }
     }
 
+    /**
+     * 使用jdk8中的CompletableFuture 异步获取结果
+     * @throws Exception
+     */
+    @Test
+    public void test4() throws Exception{
+
+    }
+
+
+
 
     @AllArgsConstructor
     static class MyCallable implements Callable<Integer>{
         private int sleepTime;
+        @Override
         public Integer call() throws Exception {
             Thread.sleep(sleepTime*1000);
             throw new RuntimeException("kkk");

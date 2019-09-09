@@ -5,6 +5,7 @@ package cglib;
  * @Date: 2019/1/16 14:25
  */
 public class Dao {
+
     public String update(){
         System.out.println("do update");
         return " update success ";
