@@ -23,7 +23,6 @@ public class MyTest1 {
         System.out.println(sortedMap.lastKey());
         //获取key大于等于3的子map
         System.out.println(sortedMap.tailMap(3));
-
     }
 
 }

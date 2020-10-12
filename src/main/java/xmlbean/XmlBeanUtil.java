@@ -39,7 +39,7 @@ public class XmlBeanUtil {
                 ;
         Student student = xmlToBean(xml,Student.class);
         System.out.println(student);
-//        Student student = new Student();
+//        Grade student = new Grade();
 //        student.setAge("21");
 //        student.setName("yyl");
 //        List<Courser> list = new ArrayList<>();

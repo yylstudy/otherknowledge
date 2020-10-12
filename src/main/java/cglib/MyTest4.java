@@ -1,6 +1,9 @@
 package cglib;
 
+import collection.sourcecode.HashMap;
 import org.springframework.cglib.proxy.Enhancer;
+
+import java.util.Map;
 
 /**
  * @Author: yyl
@@ -23,6 +26,8 @@ public class MyTest4 {
         //方法内部调用无效，关键原因在于SpringDaoProxy的回调方法
         System.out.println(dao1.select());
         System.out.println(dao1.update());
+        Map<String,Object> map = new HashMap<>();
+        String  ss = (String)map.get("ss");
     }
 
 }
