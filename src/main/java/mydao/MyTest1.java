@@ -13,12 +13,12 @@ import java.util.stream.IntStream;
 public class MyTest1 {
     public static void main(String[] args) throws Exception{
         GradeDao gradeDao = new GradeDao();
-        List<Grade> grades = gradeDao.query(null,null);
+//        List<Grade> grades = gradeDao.query(null,null);
 //        System.out.println(grades);
 //        StudentDao studentDao = new StudentDao();
 //        List<Student> students = studentDao.query(null,null);
         CompletableFuture[] completableFutures = IntStream.rangeClosed(0,999).mapToObj(index->CompletableFuture.supplyAsync(()->
-                gradeDao.query(null,preparedStatement -> System.out.println(index)))).toArray(CompletableFuture[]::new);
+                gradeDao.query(null,ps -> System.out.println(index)))).toArray(CompletableFuture[]::new);
         CompletableFuture.allOf(completableFutures).join();
     }
 }

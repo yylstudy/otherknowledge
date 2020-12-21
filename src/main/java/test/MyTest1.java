@@ -3,12 +3,6 @@ package test;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.function.IntConsumer;
-import java.util.stream.Collectors;
-
 /**
  * @Author: yyl
  * @Date: 2019/3/14 17:04

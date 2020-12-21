@@ -21,6 +21,10 @@ import java.util.Set;
  * @Date 2019/7/19 0019
  */
 public class XmlBeanUtil {
+    /**
+     * XStream对象线程安全
+     */
+    private static XStream xStream = new XStream();
     public static void main(String[] args){
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
                 "<student>" +
@@ -59,7 +63,7 @@ public class XmlBeanUtil {
      * @return
      */
     public static String beanToXml(Object obj){
-        XStream xStream = new XStream();
+
         Set<Class> set = new HashSet();
         set.add(obj.getClass());
         getAllClass(obj.getClass(),set);

@@ -1,6 +1,7 @@
 package locks;
 
-import java.util.List;
+import org.junit.Test;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 
@@ -11,13 +12,37 @@ import java.util.stream.IntStream;
  * @createTime 2020-09-29
  */
 public class MyTest1 {
-    public static void main(String[] args) {
+    /**
+     * 不可重入锁测试
+     */
+    @Test
+    public void test1(){
         MyObject myObject = new MyObject();
+        UnReentTrantSpinLock unReentTrantSpinLock = new UnReentTrantSpinLock();
         CompletableFuture<String>[] ss = IntStream.range(0,10).mapToObj(index->CompletableFuture.supplyAsync(()->{
             for(int i=0;i<100000;i++){
-                SpinLock.lock();
+                unReentTrantSpinLock.lock();
                 myObject.add();
-                SpinLock.unLock();
+                unReentTrantSpinLock.unlock();
+            }
+            return "";
+        })).toArray(CompletableFuture[]::new);
+        CompletableFuture.allOf(ss).join();
+        System.out.println(myObject.sum);
+    }
+
+    /**
+     * 可重入锁测试
+     */
+    @Test
+    public void test2(){
+        MyObject myObject = new MyObject();
+        ReentTrantSpinLock reentTrantSpinLock = new ReentTrantSpinLock();
+        CompletableFuture<String>[] ss = IntStream.range(0,10).mapToObj(index->CompletableFuture.supplyAsync(()->{
+            for(int i=0;i<100000;i++){
+                reentTrantSpinLock.lock();
+                myObject.add();
+                reentTrantSpinLock.unlock();
             }
             return "";
         })).toArray(CompletableFuture[]::new);
