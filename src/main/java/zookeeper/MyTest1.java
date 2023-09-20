@@ -20,9 +20,9 @@ public class MyTest1 {
     public static void test1() {
         try{
             String lockNode = "/gx_wlw_lock_node";
-            DistributedLockUtils.doLockWork("127.0.0.1:2181",lockNode,
+            DistributedLockUtils.doLockWork("172.16.254.2:20511",lockNode,
                     ()->{
-                        Thread.sleep(2000);
+                        Thread.sleep(20000);
                         System.out.println("---------------------");
                     });
 
