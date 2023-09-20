@@ -1,4 +1,4 @@
-package otter;
+package com.alibaba.otter.node.extend.processor;
 
 import com.alibaba.otter.node.extend.processor.AbstractEventProcessor;
 import com.alibaba.otter.shared.etl.model.EventData;
